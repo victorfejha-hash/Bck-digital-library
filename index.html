@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="BCK Digital Library – Bishop Cipriano Kihangire Secondary School. Textbooks, exams, courses and study media. Learn. Discover. Excel." />
+  <meta name="theme-color" content="#0b1d3a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="BCK Library" />
+
+  <!-- Open Graph / WhatsApp / Facebook preview
+       IMPORTANT: After you publish on GitHub Pages, replace YOUR-USERNAME and YOUR-REPO
+       with your real values so the image appears when sharing. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BCK Digital Library" />
+  <meta property="og:title" content="BCK Digital Library | Bishop Cipriano Kihangire SS" />
+  <meta property="og:description" content="Learn. Discover. Excel. Textbooks, online exams, study media and holiday courses for secondary students." />
+  <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="BCK Digital Library" />
+  <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO/" />
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BCK Digital Library" />
+  <meta name="twitter:description" content="Bishop Cipriano Kihangire Secondary School – digital library, exams and courses." />
+  <meta name="twitter:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/assets/og-image.png" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <title>BCK Digital Library | Bishop Cipriano Kihangire Secondary School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ==================== SPLASH / LOADING ==================== -->
+  <div id="splashScreen" class="splash-screen">
+    <div class="splash-inner">
+      <div class="splash-logo">
+        <div class="logo-mark splash-mark">BCK</div>
+      </div>
+      <h1 class="splash-title">BCK Digital Library</h1>
+      <p class="splash-sub">Bishop Cipriano Kihangire Secondary School</p>
+      <div class="splash-loader"><div class="splash-bar"></div></div>
+      <p class="splash-loading">Loading your learning space…</p>
+    </div>
+  </div>
+
+  <!-- ==================== LOGIN SCREEN ==================== -->
+  <div id="loginScreen" class="login-screen hidden">
+    <div class="login-bg"></div>
+    <div class="login-card animate-in">
+      <div class="login-logo">
+        <div class="logo-mark">BCK</div>
+        <h1>BCK Digital Library</h1>
+        <p class="login-school">Bishop Cipriano Kihangire Secondary School</p>
+        <p class="login-tagline">Learn. Discover. Excel.</p>
+      </div>
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="loginEmail"><i class="fa-solid fa-envelope"></i> Email or Student ID</label>
+          <input type="text" id="loginEmail" placeholder="e.g. student@bck.ac.ug or BCK-2026-001" required autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label for="loginPass"><i class="fa-solid fa-lock"></i> Password</label>
+          <input type="password" id="loginPass" placeholder="Enter your password" required autocomplete="current-password" />
+        </div>
+        <p class="login-hint">Sign in with your email or student ID and a password (minimum 4 characters) to access the library.</p>
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign In
+        </button>
+      </form>
+      <p class="login-footer">Holiday learning platform for secondary students</p>
+    </div>
+  </div>
+
+  <!-- ==================== APP SHELL ==================== -->
+  <div id="appShell" class="app-shell hidden">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-mark sm">BCK</div>
+        <div>
+          <strong>BCK Digital Library</strong>
+          <small>Bishop Cipriano Kihangire SS</small>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="home"><i class="fa-solid fa-house"></i> Home</button>
+        <button class="nav-item" data-view="library"><i class="fa-solid fa-book-open"></i> Library</button>
+        <button class="nav-item" data-view="courses"><i class="fa-solid fa-chalkboard-user"></i> Online Courses</button>
+        <button class="nav-item" data-view="exams"><i class="fa-solid fa-clipboard-question"></i> Online Exams</button>
+        <button class="nav-item" data-view="media"><i class="fa-solid fa-play"></i> Study Media</button>
+        <button class="nav-item" data-view="saved"><i class="fa-solid fa-bookmark"></i> My Library</button>
+        <button class="nav-item" data-view="notifications"><i class="fa-solid fa-bell"></i> Notifications <span class="nav-badge" id="notifBadge">0</span></button>
+        <button class="nav-item" data-view="contact"><i class="fa-solid fa-envelope"></i> Contact</button>
+        <button class="nav-item" data-view="about"><i class="fa-solid fa-circle-info"></i> About</button>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="nav-item hidden" id="installAppBtn"><i class="fa-solid fa-download"></i> Install App</button>
+        <button class="nav-item" id="themeBtn"><i class="fa-solid fa-moon"></i> Theme</button>
+        <button class="nav-item" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="search" id="globalSearch" placeholder="Search books, subjects, notes..." autocomplete="off" />
+        </div>
+        <div class="topbar-user">
+          <button class="icon-btn" id="topNotifBtn" title="Notifications" data-view="notifications">
+            <i class="fa-solid fa-bell"></i>
+            <span class="dot-badge hidden" id="topNotifDot"></span>
+          </button>
+          <span id="userDisplay">Learner</span>
+          <div class="avatar" id="userAvatar"><i class="fa-solid fa-user"></i></div>
+        </div>
+      </header>
+
+      <main class="content">
+        <!-- HOME -->
+        <section id="view-home" class="view active">
+          <div class="hero">
+            <div class="hero-content">
+              <h1>Welcome to BCK Digital Library</h1>
+              <p class="hero-sub">Learn. Discover. Excel.</p>
+              <p class="hero-desc">Your gateway to textbooks, revision notes, past papers and online holiday lessons — built for Bishop Cipriano Kihangire Secondary School and learners across Uganda.</p>
+              <div class="hero-actions">
+                <button class="btn btn-primary" data-view="library"><i class="fa-solid fa-book-open"></i> Explore Library</button>
+                <button class="btn btn-outline-light" data-view="courses"><i class="fa-solid fa-chalkboard-user"></i> Book Online Courses</button>
+              </div>
+            </div>
+          </div>
+          <div class="section-title">
+            <h2>Featured Resources</h2>
+            <button class="text-link" data-view="library">View all <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+          <div class="card-grid" id="featuredGrid"></div>
+          <div class="section-title">
+            <h2>Browse by Subject</h2>
+          </div>
+          <div class="subject-row" id="subjectRow"></div>
+        </section>
+
+        <!-- LIBRARY -->
+        <section id="view-library" class="view">
+          <div class="page-head">
+            <h1>Digital Library</h1>
+            <p id="libCount">0 resources</p>
+          </div>
+          <div class="filter-bar">
+            <select id="fSubject"><option value="">All Subjects</option></select>
+            <select id="fClass"><option value="">All Classes</option></select>
+            <select id="fCategory"><option value="">All Categories</option></select>
+            <select id="fSort">
+              <option value="newest">Newest</option>
+              <option value="title">Title A–Z</option>
+              <option value="subject">Subject</option>
+            </select>
+            <button class="btn btn-ghost" id="clearFilters"><i class="fa-solid fa-xmark"></i> Clear</button>
+          </div>
+          <div class="card-grid" id="libraryGrid"></div>
+          <div class="empty-state hidden" id="libEmpty">
+            <i class="fa-solid fa-book"></i>
+            <p>No resources match your search.</p>
+          </div>
+        </section>
+
+        <!-- COURSES -->
+        <section id="view-courses" class="view">
+          <div class="page-head">
+            <h1>Online Courses & Holiday Lessons</h1>
+            <p>Book live or recorded lessons with qualified teachers. Fee: <strong>50,000 UGX</strong> per course booking.</p>
+          </div>
+          <div class="courses-grid" id="coursesGrid">
+            <article class="course-card">
+              <div class="course-icon"><i class="fa-solid fa-square-root-variable"></i></div>
+              <h3>Mathematics Mastery</h3>
+              <p>O-Level & A-Level algebra, calculus foundations, exam techniques.</p>
+              <div class="course-meta"><span><i class="fa-solid fa-clock"></i> 8 weeks</span><span class="price">50,000 UGX</span></div>
+              <button class="btn btn-primary btn-block book-btn" data-course="Mathematics Mastery">Book Course</button>
+            </article>
+            <article class="course-card">
+              <div class="course-icon"><i class="fa-solid fa-flask"></i></div>
+              <h3>Science Intensive</h3>
+              <p>Physics, Chemistry & Biology revision with practicals focus.</p>
+              <div class="course-meta"><span><i class="fa-solid fa-clock"></i> 8 weeks</span><span class="price">50,000 UGX</span></div>
+              <button class="btn btn-primary btn-block book-btn" data-course="Science Intensive">Book Course</button>
+            </article>
+            <article class="course-card">
+              <div class="course-icon"><i class="fa-solid fa-language"></i></div>
+              <h3>English & Literature</h3>
+              <p>Comprehension, composition, set books and oral skills.</p>
+              <div class="course-meta"><span><i class="fa-solid fa-clock"></i> 6 weeks</span><span class="price">50,000 UGX</span></div>
+              <button class="btn btn-primary btn-block book-btn" data-course="English & Literature">Book Course</button>
+            </article>
+            <article class="course-card">
+              <div class="course-icon"><i class="fa-solid fa-globe"></i></div>
+              <h3>Humanities Package</h3>
+              <p>History, Geography, CRE/IRE — map work and essay skills.</p>
+              <div class="course-meta"><span><i class="fa-solid fa-clock"></i> 6 weeks</span><span class="price">50,000 UGX</span></div>
+              <button class="btn btn-primary btn-block book-btn" data-course="Humanities Package">Book Course</button>
+            </article>
+            <article class="course-card">
+              <div class="course-icon"><i class="fa-solid fa-laptop-code"></i></div>
+              <h3>ICT & Computer Studies</h3>
+              <p>Theory, practicals, and exam-focused digital skills.</p>
+              <div class="course-meta"><span><i class="fa-solid fa-clock"></i> 6 weeks</span><span class="price">50,000 UGX</span></div>
+              <button class="btn btn-primary btn-block book-btn" data-course="ICT & Computer Studies">Book Course</button>
+            </article>
+            <article class="course-card">
+              <div class="course-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h3>Exam Bootcamp</h3>
+              <p>Intensive past-paper drills and marking schemes for S4 & S6.</p>
+              <div class="course-meta"><span><i class="fa-solid fa-clock"></i> 4 weeks</span><span class="price">50,000 UGX</span></div>
+              <button class="btn btn-primary btn-block book-btn" data-course="Exam Bootcamp">Book Course</button>
+            </article>
+          </div>
+          <div class="payment-note">
+            <i class="fa-solid fa-circle-info"></i>
+            Payment is processed through MTN Mobile Money, Airtel Money, or PayPal. This demo collects booking details; live payment requires school merchant accounts in production.
+          </div>
+        </section>
+
+        <!-- SAVED -->
+        <section id="view-saved" class="view">
+          <div class="page-head">
+            <h1>My Library</h1>
+            <p>Resources you have saved for quick access.</p>
+          </div>
+          <div class="card-grid" id="savedGrid"></div>
+          <div class="empty-state" id="savedEmpty">
+            <i class="fa-solid fa-bookmark"></i>
+            <p>No saved resources yet. Browse the library and save what you need.</p>
+            <button class="btn btn-primary" data-view="library">Go to Library</button>
+          </div>
+        </section>
+
+        <!-- ONLINE EXAMS -->
+        <section id="view-exams" class="view">
+          <div class="page-head">
+            <h1>Online Practice Exams</h1>
+            <p>Test your knowledge with interactive quizzes. Scores are saved on this device.</p>
+          </div>
+          <div class="exams-list" id="examsList"></div>
+          <div id="examPlayer" class="exam-player hidden">
+            <button class="back-link" id="examBack"><i class="fa-solid fa-arrow-left"></i> Back to exams</button>
+            <div class="exam-progress"><div class="exam-progress-bar" id="examProgressBar"></div></div>
+            <h2 id="examTitle"></h2>
+            <p class="exam-qnum" id="examQNum"></p>
+            <div class="exam-question" id="examQuestion"></div>
+            <div class="exam-options" id="examOptions"></div>
+            <div class="exam-nav">
+              <button class="btn btn-ghost" id="examPrev" disabled>Previous</button>
+              <button class="btn btn-primary" id="examNext">Next</button>
+            </div>
+            <div id="examResult" class="exam-result hidden"></div>
+          </div>
+        </section>
+
+        <!-- STUDY MEDIA -->
+        <section id="view-media" class="view">
+          <div class="page-head">
+            <h1>Study Media</h1>
+            <p>Educational tutorials and revision videos to support your learning.</p>
+          </div>
+          <div class="media-grid" id="mediaGrid"></div>
+        </section>
+
+        <!-- NOTIFICATIONS -->
+        <section id="view-notifications" class="view">
+          <div class="page-head">
+            <h1>Notification Centre</h1>
+            <div class="page-head-actions">
+              <button class="btn btn-ghost btn-sm" id="markAllRead"><i class="fa-solid fa-check-double"></i> Mark all read</button>
+            </div>
+          </div>
+          <div class="notif-list" id="notifList"></div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="view-contact" class="view">
+          <div class="page-head">
+            <h1>Contact & Support</h1>
+            <p>Get help, report issues, or request more information about the platform.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <h3>Email the developers</h3>
+              <p>For technical support, feature requests, or general enquiries about BCK Digital Library.</p>
+              <a class="btn btn-primary" href="mailto:vyrnox74@gmail.com?subject=BCK%20Digital%20Library%20Enquiry">
+                <i class="fa-solid fa-paper-plane"></i> vyrnox74@gmail.com
+              </a>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-school"></i></div>
+              <h3>School information</h3>
+              <p>Bishop Cipriano Kihangire Secondary School<br>Bbiina / Luzira, Kampala, Uganda</p>
+              <p class="muted-sm">For academic and enrolment matters, contact the school administration directly.</p>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-code"></i></div>
+              <h3>Development team</h3>
+              <p>Developed by <strong>VYRNOX</strong> / <strong>VICt-n3r</strong> / <strong>MATAA</strong></p>
+              <a class="btn btn-ghost" href="mailto:vyrnox74@gmail.com?subject=Partnership%20-%20BCK%20Digital%20Library">
+                <i class="fa-solid fa-handshake"></i> Partnership enquiry
+              </a>
+            </div>
+          </div>
+          <form id="contactForm" class="contact-form">
+            <h3>Send a message</h3>
+            <div class="form-group">
+              <label for="cName">Your name</label>
+              <input type="text" id="cName" required placeholder="Full name" />
+            </div>
+            <div class="form-group">
+              <label for="cEmail">Your email</label>
+              <input type="email" id="cEmail" required placeholder="you@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="cMsg">Message</label>
+              <textarea id="cMsg" rows="4" required placeholder="How can we help?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Open in email client</button>
+            <p class="muted-sm">This opens your email app with the message addressed to vyrnox74@gmail.com.</p>
+          </form>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="view-about" class="view">
+          <div class="page-head">
+            <h1>About BCK Digital Library</h1>
+          </div>
+          <div class="about-card">
+            <div class="logo-mark lg">BCK</div>
+            <h2>Bishop Cipriano Kihangire Secondary School</h2>
+            <p class="about-loc"><i class="fa-solid fa-location-dot"></i> Bbiina / Luzira, Kampala, Uganda</p>
+            <p>BCK Digital Library is a centralized academic platform for textbooks, revision materials, past papers, online practice exams, study media and holiday lessons. It is designed for BCK students and learners from other schools who need reliable study tools during term and holidays.</p>
+            <hr />
+            <h3>Developers</h3>
+            <p class="developers">Developed by <strong>VYRNOX</strong> / <strong>VICt-n3r</strong> / <strong>MATAA</strong></p>
+            <p class="about-note">Resource catalogue is maintained through the Resource Spreadsheet and published as JSON. PDF access uses authorized Google Drive links. For support: <a href="mailto:vyrnox74@gmail.com">vyrnox74@gmail.com</a></p>
+          </div>
+        </section>
+
+        <!-- RESOURCE DETAIL -->
+        <section id="view-detail" class="view">
+          <button class="back-link" id="backBtn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+          <div class="detail-panel" id="detailPanel"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Mobile bottom nav -->
+    <nav class="bottom-nav" id="bottomNav">
+      <button class="bnav active" data-view="home"><i class="fa-solid fa-house"></i><span>Home</span></button>
+      <button class="bnav" data-view="library"><i class="fa-solid fa-book-open"></i><span>Library</span></button>
+      <button class="bnav" data-view="exams"><i class="fa-solid fa-clipboard-question"></i><span>Exams</span></button>
+      <button class="bnav" data-view="media"><i class="fa-solid fa-play"></i><span>Media</span></button>
+      <button class="bnav" data-view="notifications"><i class="fa-solid fa-bell"></i><span>Alerts</span></button>
+    </nav>
+  </div>
+
+  <!-- ==================== PAYMENT MODAL ==================== -->
+  <div id="payModal" class="modal-overlay hidden">
+    <div class="modal pay-modal animate-in">
+      <button class="modal-close" id="payClose"><i class="fa-solid fa-xmark"></i></button>
+      <h2>Book Course</h2>
+      <p class="pay-course-name" id="payCourseName">—</p>
+      <p class="pay-amount">Amount: <strong>50,000 UGX</strong></p>
+      <div class="form-group">
+        <label>Full name</label>
+        <input type="text" id="payName" placeholder="Your full name" />
+      </div>
+      <div class="form-group">
+        <label>Phone number</label>
+        <input type="tel" id="payPhone" placeholder="07XX XXX XXX" />
+      </div>
+      <div class="form-group">
+        <label>Payment method</label>
+        <div class="pay-methods">
+          <label class="pay-method">
+            <input type="radio" name="payMethod" value="mtn" checked />
+            <span class="pay-logo mtn"><i class="fa-solid fa-mobile-screen"></i> MTN MoMo</span>
+          </label>
+          <label class="pay-method">
+            <input type="radio" name="payMethod" value="airtel" />
+            <span class="pay-logo airtel"><i class="fa-solid fa-mobile-screen"></i> Airtel Money</span>
+          </label>
+          <label class="pay-method">
+            <input type="radio" name="payMethod" value="paypal" />
+            <span class="pay-logo paypal"><i class="fa-brands fa-paypal"></i> PayPal</span>
+          </label>
+        </div>
+      </div>
+      <div id="payExtra" class="form-group">
+        <label id="payExtraLabel">MTN number</label>
+        <input type="text" id="payExtraInput" placeholder="07XX XXX XXX" />
+      </div>
+      <button class="btn btn-primary btn-block" id="paySubmit">
+        <i class="fa-solid fa-lock"></i> Confirm & Pay 50,000 UGX
+      </button>
+      <p class="pay-disclaimer">Demo booking only. Live payments require official school merchant accounts (MTN, Airtel, PayPal).</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
